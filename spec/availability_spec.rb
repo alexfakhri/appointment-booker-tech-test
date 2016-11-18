@@ -16,7 +16,7 @@ describe Availability do
 
   it 'should raise an error on initialization if the time is outstide the oppening hours' do
     time_requested = "07:00"
-    expect { subject.check_time_requested(time_requested) }.to raise_error "Please select a time between 08:00 & 15:00"
+    expect { subject.check_time_requested(time_requested) }.to raise_error "Please select a time between #{Availability::FIRST_SLOT} & #{Availability::LAST_SLOT}"
   end
 
 end

@@ -3,6 +3,9 @@ require 'json'
 
 class Availability
 
+  FIRST_SLOT = "08:00"
+  LAST_SLOT = "15:00"
+
   attr_reader :time_requested, :available_times
 
   def initialize(time_requested = ARGV[0])
@@ -22,7 +25,7 @@ class Availability
   end
 
   def check_time_requested(time)
-     raise "Please select a time between 08:00 & 15:00" if (time < "08:00" || time > "15:00")
+     raise "Please select a time between #{FIRST_SLOT} & #{LAST_SLOT}" if (time < FIRST_SLOT || time > LAST_SLOT)
   end
 
 end
