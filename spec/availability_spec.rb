@@ -10,4 +10,8 @@ describe Availability do
     expect(subject.time_requested).to eq "08:00:00"
   end
 
+  it 'initializes with a json object with available appointments' do
+    expect(subject.available_times.is_a?(Array)).to be true
+  end
+
 end
