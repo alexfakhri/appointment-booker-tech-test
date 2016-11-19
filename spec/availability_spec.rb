@@ -14,7 +14,7 @@ describe Availability do
     expect(subject.available_times).to include ({ "time"=>"08:00:00", "slot_size"=>10, "doctor_id"=>1 })
   end
 
-  it 'will raise an error on initialization if the time is outstide the oppening hours' do
+  it 'will raise an error on initialization if the time is outstide the available appointment hours' do
     ARGV[0] = "07:00"
     expect { subject.check_time_requested(time_requested) }.to raise_error "Please select a time between #{Availability::FIRST_APPOINTMENT} & #{Availability::LAST_APPOINTMENT}"
   end
@@ -33,6 +33,5 @@ describe Availability do
     ARGV[0] = "08:00"
     expect(subject.available_times).to include ({ "time"=> "08:00:00", "slot_size"=> 10, "doctor_id"=> 1, "available"=> false })
   end
-
 
 end

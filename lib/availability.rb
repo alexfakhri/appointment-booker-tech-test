@@ -38,9 +38,9 @@ class Availability
   end
 
   def write_to_json
-    hash = JSON.load(File.read('./availability_slots.json'))
-    hash["availability_slots"][@index].store("available", false)
-    File.write('./availability_slots.json', JSON.dump(hash))
+    json_file = JSON.load(File.read('./availability_slots.json'))
+    json_file["availability_slots"][@index].store("available", false)
+    File.write('./availability_slots.json', JSON.dump(json_file))
   end
 
   def final_time_format(time)
