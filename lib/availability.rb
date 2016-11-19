@@ -28,8 +28,21 @@ class Availability
      raise "Please select a time between #{FIRST_SLOT} & #{LAST_SLOT}" if (time < FIRST_SLOT || time > LAST_SLOT)
   end
 
+  def available_time
+    @index = @available_times.find_index { |time, index| time["time"] == time_requested }
+    while @available_times[@index].has_key?("available") do
+      @index += 1
+    end
+      @available_times[@index].values_at("time")[0]
+  end
+
+  def final_time_format(time)
+    final_time = Time.parse(time)
+    final_time.strftime("%H:%M")
+  end
+
+  def appoinment_time
+    "Your appointment time is #{final_time_format(available_time)}"
+  end
+
 end
-
-
-# appointment = Availability.new
-# puts appointment.appoinment_time
