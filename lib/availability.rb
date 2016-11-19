@@ -3,8 +3,8 @@ require 'json'
 
 class Availability
 
-  FIRST_SLOT = "08:00"
-  LAST_SLOT = "15:00"
+  FIRST_APPOINTMENT = "08:00"
+  LAST_APPOINTMENT = "15:00"
 
   attr_reader :time_requested, :available_times
 
@@ -25,7 +25,7 @@ class Availability
   end
 
   def check_time_requested(time)
-     raise "Please select a time between #{FIRST_SLOT} & #{LAST_SLOT}" if (time < FIRST_SLOT || time > LAST_SLOT)
+     raise "Please select a time between #{FIRST_APPOINTMENT} & #{LAST_APPOINTMENT}" if (time < FIRST_APPOINTMENT || time > LAST_APPOINTMENT)
   end
 
   def available_time
@@ -33,7 +33,14 @@ class Availability
     while @available_times[@index].has_key?("available") do
       @index += 1
     end
+      write_to_json
       @available_times[@index].values_at("time")[0]
+  end
+
+  def write_to_json
+    hash = JSON.load(File.read('./availability_slots.json'))
+    hash["availability_slots"][@index].store("available", false)
+    File.write('./availability_slots.json', JSON.dump(hash))
   end
 
   def final_time_format(time)
