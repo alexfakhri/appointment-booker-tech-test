@@ -1,4 +1,4 @@
-Babylon Ruby Test
+Appointment Booker Tech Test
 ========
 
 This is a simple ruby script to book appointments based on a provided JSON file with available booking times and doctors.
@@ -26,12 +26,12 @@ How to use:
 
 Clone the repository:
 ```shell
-$ git clone https://github.com/alexfakhri/babylon_tech_test.git
+$ git clone https://github.com/alexfakhri/appointment-booker-tech-test.git
 ```
 
 Change into the directory:
 ```shell
-$ cd babylon_tech_test
+$ cd appointment-booker-tech-test
 ```
 
 To run tests:
